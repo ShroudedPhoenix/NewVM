@@ -1,11 +1,11 @@
 #!/bin/bash
 
-#Installs Atom
+#Installs Atom = Works
 function AtomInstall() {
-    sudo apt-get install atom
+    sudo snap install atom --classic
 }
 
-#Installs MySQL
+#Installs MySQL = Works
 function MysqlInstall() {
     sudo apt-get update
     sudo apt-get install mysql-server
@@ -16,6 +16,7 @@ function MysqlInstall() {
 #Installs FreqTrade
 function FreqtradeInstall() {
     sudo apt-get install python3-venv libatlas-base-dev
+    sudo apt install git
     git clone https://github.com/freqtrade/freqtrade.git
     cd freqtrade
 
@@ -27,13 +28,14 @@ function HyperOptInstall() {
     python3 -m pip install -e .[hyperopt]
 }
 
-#Installs Python
+#Installs Python = Works
 function PythonInstall() {
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -e .
+    sudo apt update
+    sudo apt install python
+    sudo apt install python3
 }
 
-#Installs Pycharm
+#Installs Pycharm = Works
 function PycharmInstall() {
     sudo snap install pycharm-community --classic
     pycharm-community
