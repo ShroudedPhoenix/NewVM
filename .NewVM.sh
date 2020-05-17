@@ -13,7 +13,7 @@ function MysqlInstall() {
     sudo systemctl start mysql
 }
 
-#Installs FreqTrade
+#Installs FreqTrade = Dev
 function FreqtradeInstall() {
     sudo apt-get install python3-venv libatlas-base-dev
     sudo apt install git
@@ -23,7 +23,7 @@ function FreqtradeInstall() {
     bash setup.sh -i
 }
 
-#Installs HyperOpt for FreqTrade
+#Installs HyperOpt for FreqTrade = Dev
 function HyperOptInstall() {
     python3 -m pip install -e .[hyperopt]
 }
@@ -31,8 +31,12 @@ function HyperOptInstall() {
 #Installs Python = Works
 function PythonInstall() {
     sudo apt update
+    sudo apt-get install build-essential git
     sudo apt install python
     sudo apt install python3
+    sudo apt-get install curl
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python get-pip.py
 }
 
 #Installs Pycharm = Works
@@ -41,27 +45,24 @@ function PycharmInstall() {
     pycharm-community
 }
 
-#Installs Anaconda
+#Installs Anaconda = Dev
 function AnacondaInstall() {
     sudo apt-get update
     sudo apt-get install curl
-    cd /tmp
-    curl –O https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+    cd /tmp 
+    curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh –O
     sha256sum Anaconda3–2019.07–Linux–x86_64.sh
     bash Anaconda3-2019.07-Linux-x86_64.sh
 }
 
-#Installs FreqTrade Manually
+#Installs FreqTrade Manually = Dev
 function ManualFreqtrade() {
-    sudo ./build_helpers/install_ta-lib.sh
-    python3 -m venv .env
-    source .env/bin/activate
-    git clone https://github.com/freqtrade/freqtrade.git
+    sudo apt install git
+    git clone https://github.com/MontrealTradingGroup/freqtrade.git
     cd freqtrade
-    python3 -m pip install --upgrade pip
-    python3 -m pip install -e .
-    # Initialize the user_directory
-    freqtrade create-userdir --userdir user_data/
-    # Create a new configuration file
-    freqtrade new-config --config config.json
+    sudo apt-get install make build-essential python3-dev
+    git checkout develop
+    ./setup.sh --install
+    source .env/bin/activate
+    python3.8 ./freqtrade/main.py -c config.json
 }
