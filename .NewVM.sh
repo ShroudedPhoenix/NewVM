@@ -5,6 +5,11 @@ function AtomInstall() {
     sudo snap install atom --classic
 }
 
+#Installs Kite for python
+function KiteInstall() {
+    bash -c "$(wget -q -O - https://linux.kite.com/dls/linux/current)"
+}
+
 #Installs MySQL = Works
 function MysqlInstall() {
     sudo apt-get update
