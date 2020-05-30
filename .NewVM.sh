@@ -8,6 +8,8 @@ function AtomInstall() {
 #Installs Project Jupyter = Works
 function JupyterInstall() {
     conda install -c conda-forge jupyterlab
+    pip3 install jupyter
+    jupyter notebook
 }
 
 #Installs Kite for python = Works
