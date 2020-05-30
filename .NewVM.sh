@@ -5,7 +5,12 @@ function AtomInstall() {
     sudo snap install atom --classic
 }
 
-#Installs Kite for python
+#Installs Project Jupyter = Works
+function JupyterInstall() {
+    conda install -c conda-forge jupyterlab
+}
+
+#Installs Kite for python = Works
 function KiteInstall() {
     bash -c "$(wget -q -O - https://linux.kite.com/dls/linux/current)"
 }
